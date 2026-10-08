@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Formulación orgánica</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header>
+  <h1>Formulación orgánica</h1>
+  <nav>
+    <button data-v="sim" class="on">Simulacro</button>
+    <button data-v="fam">Familias</button>
+    <button data-v="tabla">Tabla y reglas</button>
+  </nav>
+</header>
+<main>
+<section id="sim"></section>
+<section id="fam" hidden></section>
+<section id="tabla" hidden>
+  <h2>Cómo se monta un nombre</h2>
+  <p class="formula">prefijos + cadena + enlace + sufijo &nbsp;→&nbsp; 3-metil + but + an + -2-ol = <b>3-metilbutan-2-ol</b></p>
+  <div class="scroll"><table>
+    <tr><th>Carbonos</th><td>1</td><td>2</td><td>3</td><td>4</td><td>5</td><td>6</td><td>7</td></tr>
+    <tr><th>Prefijo</th><td>met-</td><td>et-</td><td>prop-</td><td>but-</td><td>pent-</td><td>hex-</td><td>hept-</td></tr>
+  </table></div>
+  <p><b>an</b> = enlaces simples, <b>en</b> = hay un doble, <b>in</b> = hay un triple. Truco: a, e, i en orden = 1, 2, 3 enlaces.</p>
+
+  <h2>Orden de prioridad</h2>
+  <p>El grupo que está más arriba pone el sufijo y recibe el número más bajo. Los demás van de prefijo.</p>
+  <div class="scroll"><table>
+    <tr><th>#</th><th>Familia</th><th>Grupo</th><th>Sufijo (si manda)</th><th>Prefijo (si pierde)</th><th>Ejemplo</th></tr>
+    <tr><td>1</td><td>Ácido</td><td>–COOH</td><td>ácido -oico</td><td>carboxi-</td><td>ácido butanoico</td></tr>
+    <tr><td>2</td><td>Éster</td><td>–CO–O–</td><td>-oato de -ilo</td><td></td><td>etanoato de etilo</td></tr>
+    <tr><td>3</td><td>Amida</td><td>–CO–NH<sub>2</sub></td><td>-amida</td><td></td><td>propanamida</td></tr>
+    <tr><td>4</td><td>Nitrilo</td><td>–C≡N</td><td>-nitrilo</td><td>ciano-</td><td>butanonitrilo</td></tr>
+    <tr><td>5</td><td>Aldehído</td><td>–CHO</td><td>-al</td><td>oxo-</td><td>butanal</td></tr>
+    <tr><td>6</td><td>Cetona</td><td>–CO–</td><td>-ona</td><td>oxo-</td><td>pentan-2-ona</td></tr>
+    <tr><td>7</td><td>Alcohol</td><td>–OH</td><td>-ol</td><td>hidroxi-</td><td>butan-2-ol</td></tr>
+    <tr><td>8</td><td>Amina</td><td>–NH<sub>2</sub></td><td>-amina</td><td>amino-</td><td>propan-1-amina</td></tr>
+    <tr><td>9</td><td>Éter</td><td>–O–</td><td>(éter)</td><td>-oxi- (metoxi, etoxi)</td><td>1-metoxipropano</td></tr>
+    <tr><td>10</td><td>Halógeno</td><td>–F, –Cl, –Br, –I</td><td>nunca</td><td>fluoro-, cloro-, bromo-, yodo-</td><td>2-clorobutano</td></tr>
+  </table></div>
+  <p>Regla rápida: todo lo que lleva C=O gana al alcohol, y el alcohol gana a la amina.</p>
+
+  <h2>Identificar la familia</h2>
+  <p>Primero mira qué átomos hay. Si hay un C=O, mira qué tiene al otro lado:</p>
+  <div class="scroll"><table>
+    <tr><th>Vecino del CO</th><th>Familia</th></tr>
+    <tr><td>C – CO – <b>C</b></td><td>cetona</td></tr>
+    <tr><td>C – CO – <b>H</b></td><td>aldehído</td></tr>
+    <tr><td>C – CO – <b>OH</b></td><td>ácido</td></tr>
+    <tr><td>C – CO – <b>O–C</b></td><td>éster</td></tr>
+    <tr><td>C – CO – <b>N</b></td><td>amida</td></tr>
+  </table></div>
+  <p>Los sufijos casi siempre están dentro del nombre de la familia: alcoh<b>ol</b>, <b>al</b>dehído, cet<b>ona</b>. Aparte van el ácido (-oico) y el éster (-oato), como en inorgánica: sulfúr<b>ico</b> → sulf<b>ato</b>.</p>
+
+  <h2>Contar la cadena</h2>
+  <ul>
+    <li>La cadena principal es la más larga que contiene el grupo. Rama es solo lo que cuelga.</li>
+    <li>El <b>CO</b> no corta: es un carbono más. El <b>O</b> y el <b>N</b> sí cortan.</li>
+    <li>Mira qué hay justo después del CO: si hay carbono, sigue contando; si hay O o N, para.</li>
+    <li>En ácidos, aldehídos, amidas y nitrilos el carbono del grupo es el 1 y no lleva número.</li>
+    <li>Los prefijos van en orden alfabético. Di- y tri- no cuentan para ordenar, y necesitan un número por cada uno.</li>
+  </ul>
+
+  <h2>Éster y éter</h2>
+  <ul>
+    <li><b>Éster</b> (hay CO pegado al O): <b>____oato de ____ilo</b>. Corta en el O del puente; el lado con el CO es el «-oato».</li>
+    <li><b>Éter</b> (O entre carbonos, sin CO): <b>etil metil éter</b> o <b>metoxietano</b>. Metil es CH<sub>3</sub>–, metoxi es CH<sub>3</sub>–O–.</li>
+  </ul>
+
+  <h2>Ciclos</h2>
+  <ul>
+    <li><b>ciclo</b> + el alcano con los mismos carbonos. Con una sola cosa colgando, sin número.</li>
+    <li>Si hay un grupo, su carbono es el 1 y el nombre acaba en su sufijo: ciclohexan<b>ol</b>.</li>
+    <li>Si el grupo está en una cadena, el anillo es la rama: ciclopropil, ciclobutil, ciclopentil, ciclohexil.</li>
+    <li>Benceno: tolueno = metilbenceno; 1,2 = orto, 1,3 = meta, 1,4 = para; como rama se llama fenil.</li>
+  </ul>
+
+  <h2>Comprobación final</h2>
+  <ol>
+    <li>¿Está dibujado el grupo que dice el sufijo?</li>
+    <li>¿Tiene cada carbono 4 enlaces?</li>
+    <li>¿Gana el grupo correcto según la prioridad?</li>
+    <li>¿Están los prefijos en orden alfabético y con sus números?</li>
+  </ol>
+</section>
+</main>
+<script src="bank.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
