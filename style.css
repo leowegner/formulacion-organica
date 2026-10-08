@@ -108,5 +108,7 @@ li { margin-bottom: 6px; }
 @media (max-width: 720px) {
   .hero { grid-template-columns: 1fr; padding: 20px; }
   nav { width: 100%; justify-content: space-between; }
-  nav button { padding: 8px 10px; flex: 1; }
+  nav button { padding: 8px 6px; flex: 1; white-space: nowrap; font-size: .92rem; }
+  .mol { min-height: 96px; }
+  .big .chain { font-size: 1.35rem; }
 }
