@@ -1,0 +1,58 @@
+:root {
+  --bg: #f6f5f1; --card: #ffffff; --ink: #1c1c1a; --mute: #6a6a64; --line: #d8d6ce;
+  --accent: #1f5fa8; --ok: #1d7a46; --okbg: #e3f3e9; --bad: #b3261e; --badbg: #fbe6e4;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #17181a; --card: #212326; --ink: #ecebe6; --mute: #a2a29b; --line: #3a3d42;
+    --accent: #7db2ee; --ok: #6fd09a; --okbg: #1d3327; --bad: #f1958e; --badbg: #3a2221;
+  }
+}
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--bg); color: var(--ink); font: 16px/1.45 system-ui, -apple-system, "Segoe UI", sans-serif; }
+header { padding: 14px 16px 0; max-width: 1100px; margin: 0 auto; }
+h1 { font-size: 1.35rem; margin: 0 0 10px; }
+h2 { font-size: 1.1rem; margin: 26px 0 8px; }
+nav { display: flex; gap: 6px; flex-wrap: wrap; border-bottom: 1px solid var(--line); }
+button { font: inherit; color: inherit; cursor: pointer; border: 1px solid var(--line); background: var(--card); border-radius: 8px; padding: 8px 14px; }
+button:hover { border-color: var(--accent); }
+nav button { border-bottom: none; border-radius: 8px 8px 0 0; background: transparent; }
+nav button.on { background: var(--card); color: var(--accent); font-weight: 600; }
+button.primary { background: var(--accent); border-color: var(--accent); color: var(--bg); font-weight: 600; }
+main { max-width: 1100px; margin: 0 auto; padding: 16px 16px 60px; }
+p { margin: 0 0 10px; }
+.mute { color: var(--mute); font-size: 0.9rem; }
+.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 10px; }
+.card { background: var(--card); border: 1px solid var(--line); border-radius: 10px; padding: 10px 12px 12px; display: flex; flex-direction: column; gap: 8px; min-width: 0; }
+.card.ok { border-color: var(--ok); background: var(--okbg); }
+.card.bad { border-color: var(--bad); background: var(--badbg); }
+.num { font-weight: 700; color: var(--mute); font-size: 0.85rem; }
+.mol { min-height: 96px; display: flex; align-items: center; justify-content: center; overflow-x: auto; }
+.name { font-size: 1.05rem; font-weight: 600; margin: 4px 0; }
+.card input { font: inherit; color: inherit; width: 100%; padding: 8px 10px; border: 1px solid var(--line); border-radius: 8px; background: var(--bg); }
+.card .res { font-size: 0.92rem; }
+.card .res b { color: var(--ok); }
+.card.bad .res b { color: var(--bad); }
+.row { display: flex; gap: 6px; flex-wrap: wrap; }
+.row button { padding: 5px 10px; font-size: 0.88rem; }
+.bar { position: sticky; top: 0; z-index: 2; display: flex; align-items: center; gap: 12px; flex-wrap: wrap; background: var(--bg); padding: 10px 0; border-bottom: 1px solid var(--line); }
+#clock { font-variant-numeric: tabular-nums; font-size: 1.5rem; font-weight: 700; }
+#clock.low { color: var(--bad); }
+.score { font-size: 1.15rem; font-weight: 600; }
+.chain { display: inline-flex; align-items: flex-start; font-size: 1.05rem; white-space: nowrap; }
+.br { display: inline-flex; flex-direction: column; align-items: center; line-height: 1.15; }
+svg text { font: 14px system-ui, sans-serif; }
+.big { font-size: 1.5rem; text-align: center; padding: 26px 8px; background: var(--card); border: 1px solid var(--line); border-radius: 10px; margin-bottom: 12px; overflow-x: auto; }
+.big .chain { font-size: 1.5rem; }
+.opts { display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 8px; margin-bottom: 12px; }
+.opts button.ok { border-color: var(--ok); background: var(--okbg); }
+.opts button.bad { border-color: var(--bad); background: var(--badbg); }
+.scroll { overflow-x: auto; margin-bottom: 10px; }
+table { border-collapse: collapse; background: var(--card); }
+th, td { border: 1px solid var(--line); padding: 6px 10px; text-align: left; white-space: nowrap; }
+th { color: var(--mute); font-weight: 600; }
+.formula { background: var(--card); border: 1px solid var(--line); border-radius: 8px; padding: 10px 12px; overflow-x: auto; white-space: nowrap; }
+label.check { display: flex; gap: 8px; align-items: center; margin: 10px 0 14px; }
+ul, ol { padding-left: 20px; margin: 0 0 10px; }
+li { margin-bottom: 4px; }
+[hidden] { display: none !important; }
