@@ -65,12 +65,19 @@ let S = null, timer = null;
 function simHome() {
   clearInterval(timer);
   const hist = store.get('hist', []);
+  const chip = ok => `<span class="chip ${ok >= 24 ? 'good' : ok >= 15 ? 'mid' : ''}">${(ok / 3).toFixed(1)}</span>`;
   $('#sim').innerHTML = `
-    <p>${TOTAL} ejercicios en 20 minutos: ${HALF} para nombrar aquí y ${HALF} para formular en papel. Al corregir, los nombres se comprueban solos y las fórmulas las marcas tú comparando con la solución.</p>
-    <label class="check"><input type="checkbox" id="withN" ${store.get('withN', false) ? 'checked' : ''}> Incluir aminas y amidas</label>
-    <button class="primary" id="go">Empezar simulacro</button>
+    <div class="hero">
+      <div>
+        <h2>Simulacro de examen</h2>
+        <p>${HALF} moléculas para nombrar aquí y ${HALF} para formular en papel. Al corregir, los nombres se comprueban solos y las fórmulas las marcas tú comparando con la solución.</p>
+        <label class="check"><input type="checkbox" id="withN" ${store.get('withN', false) ? 'checked' : ''}> Incluir aminas y amidas</label>
+        <button class="primary" id="go">Empezar simulacro</button>
+      </div>
+      <div class="stats"><div><b>${TOTAL}</b><span>ejercicios</span></div><div><b>20</b><span>minutos</span></div><div><b>${BANK.length}</b><span>moléculas</span></div></div>
+    </div>
     ${hist.length ? `<h2>Tus últimos simulacros</h2><div class="scroll"><table><tr><th>Fecha</th><th>Aciertos</th><th>Nota</th><th>Tiempo</th></tr>${
-      hist.slice(-8).reverse().map(h => `<tr><td>${h.d}</td><td>${h.ok} / ${TOTAL}</td><td>${(h.ok / 3).toFixed(1)}</td><td>${fmt(h.t)}</td></tr>`).join('')}</table></div>` : ''}`;
+      hist.slice(-8).reverse().map(h => `<tr><td>${h.d}</td><td>${h.ok} / ${TOTAL}</td><td>${chip(h.ok)}</td><td>${fmt(h.t)}</td></tr>`).join('')}</table></div>` : ''}`;
   $('#go').onclick = simStart;
   $('#withN').onchange = e => store.set('withN', e.target.checked);
 }
@@ -85,7 +92,7 @@ function simStart() {
     ? `<div class="card" data-i="${i}"><span class="num">${i + 1}</span><div class="mol">${draw(q.m)}</div><input autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="Nombre"><div class="res"></div></div>`
     : `<div class="card" data-i="${i}"><span class="num">${i + 1}</span><p class="name">${q.n}</p><div class="mol" hidden>${draw(q.m)}</div><div class="res"></div></div>`;
   $('#sim').innerHTML = `
-    <div class="bar"><span id="clock">20:00</span><button class="primary" id="grade">Corregir</button><span class="score" id="score"></span></div>
+    <div class="bar"><span id="clock">20:00</span><div class="prog"><i id="prog"></i></div><span class="score" id="score"></span><button class="primary" id="grade">Corregir</button></div>
     <h2>Parte 1: nombra</h2><div class="grid">${S.q.slice(0, HALF).map(card).join('')}</div>
     <h2>Parte 2: formula en papel</h2><div class="grid">${S.q.slice(HALF).map((q, i) => card(q, i + HALF)).join('')}</div>`;
   $('#grade').onclick = simGrade;
@@ -94,6 +101,7 @@ function simStart() {
     const c = $('#clock');
     c.textContent = fmt(Math.max(0, left));
     c.classList.toggle('low', left < 120);
+    $('#prog').style.width = Math.max(0, left / LIMIT * 100) + '%';
     if (left <= 0) simGrade();
   }, 500);
 }
@@ -137,6 +145,7 @@ function simScore() {
   const ok = S.q.filter(q => q.ok).length, pending = S.q.filter(q => q.ok === null).length;
   $('#clock').textContent = fmt(S.used);
   $('#clock').classList.remove('low');
+  $('.prog').hidden = true;
   $('#score').textContent = `${ok} / ${TOTAL} · nota ${(ok / 3).toFixed(1)}` + (pending ? ` · faltan ${pending} por marcar` : '');
   const hist = store.get('hist', []).filter(h => h.id !== S.t0);
   hist.push({ id: S.t0, d: S.date, ok, t: Math.round(S.used) });
